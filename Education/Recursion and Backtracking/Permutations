@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+
+set <string>st;
+int ans = 0;
+int depth;
+
+void find(string s,int n) // find all possible binary permutations with repetition
+{
+	if (n == 0)
+	{
+		cout << s << endl;
+		
+		return;
+	}
+	s.push_back('0');
+	find(s, n - 1);
+	s.pop_back();
+
+	s.push_back('1');
+	find(s, n - 1);
+	s.pop_back();
+}
+bool vis[10];
+void find_perm(string s, int n) // find the possible permutations for numbers with a given depth and without repetition
+{
+	// base case
+	if (n == 0)
+	{
+		cout << s << endl;
+		ans++;
+		st.insert(s);
+		return;
+	}
+	for (char i = '1'; i <= '0'+depth; i++)
+	{
+		if (!vis[i - '0'])
+		{
+			vis[i - '0'] = 1;
+			s.push_back(i);
+			find_perm(s, n - 1);
+			vis[i - '0'] = 0;
+			s.pop_back();
+		}
+	}
+}
+int main()
+{
+	string s1, s2="";
+	int n1, n2;
+	cout << "Enter the number of digits for binary permutations: ";
+	cin >> n1;
+	find(s1,n1);
+	cout << "************************************" << endl << endl;
+	cout << "Enter the depth: ";
+	cin >> n2;
+	if (n2 > 9)
+	{
+		cout << "Error" << endl;
+	}
+	else
+	{
+		depth = n2;
+		find_perm(s2, n2);
+		cout << ans << " " << st.size() << endl; // check if there is are no repetitions
+	}
+ 
+	//system("pause");
+	return 0;
+}
+
