@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int N = 10;
+int n, m;
+char mat[N][N];
+
+int dr[] = { -1,0,1,0 };
+int dc[] = { 0,1,0,-1 };
+bool vis[N][N];
+bool isValid(int r, int c)
+{
+	if (r >= 0 && r < n && c>=0 && c < m && mat[r][c]!='X' && !vis[r][c])
+		return true;
+	return false;
+}
+
+void flood_fill(int r, int c)
+{
+	// base case
+	for (int i = 0; i < 4; i++)
+	{
+		int nr = r + dr[i];
+		int nc = c + dc[i];
+		if (isValid(nr, nc))
+		{
+			vis[nr][nc] = 1;
+			flood_fill(nr, nc);
+			
+		}
+	}
+}
+
+int main()
+{
+	cin >> n >> m;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> mat[i][j];
+		}
+	}
+	flood_fill(0, 0);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cout << vis[i][j] << " ";
+		}
+		cout << endl;
+	}
+	
+	system("pause");
+	return 0;
+}
+
+/*
+4 3
+..X
+.X.
+..X
+...
+*/
