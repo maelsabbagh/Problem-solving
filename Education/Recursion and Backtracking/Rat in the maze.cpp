@@ -5,7 +5,7 @@ using namespace std;
 /*
 A rat is located in the cell (0,0) and it want to reach the end of the maze where at some points there are blocks
 the rat only moves right or down
-show all the paths that a rabbit can move
+show all the paths that a rat can move
 */
 const int N = 10;
 int n;
