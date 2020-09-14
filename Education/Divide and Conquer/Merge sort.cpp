@@ -11,22 +11,22 @@ void merge(int arr[],int s,int m,int e)
 {
 	int s1 = (m - s) + 1;
 	int s2 = (e - (m +1)) + 1;
-	int *arr1 = new int[s1];
-	int *arr2 = new int[s2];
+	int *arr1 = new int[s1]; // create a temp1 array
+	int *arr2 = new int[s2]; // create a temp2 array
 	int a = 0;
-	for (int i = s; i <= m; i++)
+	for (int i = s; i <= m; i++) // copy the first half into temp1 array
 	{
 		arr1[a] = arr[i];
 		a++;
 	}
 	a = 0;
-	for (int i = m + 1; i <= e; i++)
+	for (int i = m + 1; i <= e; i++) // copy the second half into temp2 array
 	{
 		arr2[a] = arr[i];
 		a++;
 	}
 	int i = 0, j = 0;
-	for (int k = s; k <= e; k++)
+	for (int k = s; k <= e; k++) // merging the 2 temp arrays into the original one
 	{
 		if (i == s1)
 		{
