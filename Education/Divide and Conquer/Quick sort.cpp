@@ -22,7 +22,7 @@ int partition(int arr[], int p, int r)
 void QuickSort(int arr[], int p, int r)
 {
 	
-	if (p >= r) return;
+	if (p >= r) return; // base case: p==r: 1 array with one element ... p>r : empty array
 
 	int q = partition(arr, p, r);
 	QuickSort(arr, p, q-1);
