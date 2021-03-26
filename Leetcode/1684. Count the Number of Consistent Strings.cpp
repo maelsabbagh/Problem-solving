@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int countConsistentStrings(string allowed, vector<string>& words)
+    int countConsistentStrings(string allowed, vector<string>& words)// not optimized
     {
         int c=0;
         for(int i=0;i<words.size();i++)
