@@ -43,6 +43,19 @@ void setBitByRef(int &num, int i) //i = > ith position for the bit
 }
 
 
+void clearBit(int &num, int i) //i = > ith position for the bit
+{
+	int mask = ~(1 << i);
+	num = num & mask;
+}
+
+int clearLastIbits(int num, int i) // clear last I bits from 0
+{
+	int mask = (-1 << i);
+	return num & mask;
+
+}
+
 
 
 
