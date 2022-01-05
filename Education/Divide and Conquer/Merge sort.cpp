@@ -6,7 +6,78 @@
 #include <iostream>
 using namespace std;
 
+// for problem solving
 
+void merge(int arr[], int start, int end)
+{
+	int middle = (start + end) / 2;
+	// we need a temp array to store the result of sorting 2 arrays and then copy these elements into the original array
+
+	int temp[100];
+
+	int i = start; // for the first array
+	int j = middle + 1; // for the second array
+	int k = start; // for the temporary array
+
+	while (i <= middle && j <= end)
+	{
+		if (arr[i] < arr[j])
+		{
+			temp[k] = arr[i];
+			i++;
+			k++;
+		}
+		else
+		{
+			temp[k] = arr[j];
+			j++;
+			k++;
+
+		}
+
+
+	}
+
+	while (i <= middle) // if j is consumed=> j=end+1
+	{
+		temp[k] = arr[i];
+		i++;
+		k++;
+	}
+
+	while (j <= end) // if i is consumed => i=middle+1
+	{
+		temp[k] = arr[j];
+		j++;
+		k++;
+	}
+
+	// the temporary array is sorted and we need to copy it's values to the original array
+	for (int it = start; it <= end; it++)
+	{
+		arr[it] = temp[it];
+	}
+}
+
+void mergeSort(int arr[], int start, int end)
+{
+	// base case
+	if (start >= end)return;
+
+
+	int middle = (start + end) / 2;
+
+	mergeSort(arr, start, middle);
+	mergeSort(arr, middle + 1, end);
+
+	merge(arr, start, end);
+}
+
+
+
+
+
+// for algorithms course
 void merge(int arr[],int s,int m,int e)
 {
 	int s1 = (m - s) + 1;
